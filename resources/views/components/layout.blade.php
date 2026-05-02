@@ -56,6 +56,7 @@
                             @guest
                                 <x-nav-link href="/login" :active="request()->is('login')">
                                     Login</x-nav-link>
+
                                 <x-nav-link href="/register" :active="request()->is('register')">
                                     Register</x-nav-link>
                             @endguest
