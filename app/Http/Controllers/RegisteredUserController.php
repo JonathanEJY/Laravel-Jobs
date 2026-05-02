@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
+use App\Models\Employer;
 use Illuminate\Support\Facades\Auth;
 
 // use Illuminate\Http\Request;
@@ -25,6 +26,12 @@ class RegisteredUserController extends Controller
 
         // create the user
         $user = User::create($attributes);
+
+        // sync a employer_id with a user
+        Employer::create([
+            'user_id' => $user->id,
+            'name'    => $user->first_name . "'s Company"
+        ]);
 
         // log in
         Auth::login($user);
