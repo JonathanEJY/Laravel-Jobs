@@ -28,6 +28,8 @@ COPY docker/nginx.conf /etc/nginx/sites-available/default
 EXPOSE 8000
 
 CMD php artisan migrate --force \
+    && php artisan cache:clear \
+    && php artisan view:clear \
     && php artisan config:cache \
     && php artisan route:cache \
     && php-fpm -D \
