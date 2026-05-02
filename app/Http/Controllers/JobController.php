@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -39,7 +40,7 @@ class JobController extends Controller
         Job::create([
             'title' => request('title'),
             'salary' => request('salary'),
-            'employer_id' => 1
+            'employer_id' => Auth::user()->employer->id
         ]);
 
     return redirect('/jobs');
